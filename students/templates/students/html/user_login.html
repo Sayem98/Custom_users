@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User | Login</title>
+</head>
+<body>
+<h2>Login</h2>
+    <form action="{% url 'user-login' %}" method="post">
+        {% csrf_token %}
+        {% if invalid_user %}
+            <p>username & password doesn't match.</p>
+        {% endif %}
+        {% for f in form %}
+            {{ f.label_tag }} {{ f }} {{ f.errors|striptags }}<br> <br>
+        {% endfor %}
+        {{ form.error_messages }}<br>
+        <button type="submit">Login</button>
+
+    </form>
+</body>
+</html>
